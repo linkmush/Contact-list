@@ -52,19 +52,19 @@ public class ContactMenu
         user.LastName = Console.ReadLine()!;
 
         Console.WriteLine("Enter Email:  ");
-        user.ContactInformation.Email = Console.ReadLine()!;
+        user.Email = Console.ReadLine()!;
 
         Console.WriteLine("Enter phone number:  ");
-        user.ContactInformation.PhoneNumber = Console.ReadLine()!;
+        user.PhoneNumber = Console.ReadLine()!;
 
         Console.WriteLine("Enter street name:  ");
-        user.ContactAddress.StreetName = Console.ReadLine()!;
+        user.StreetName = Console.ReadLine()!;
 
         Console.WriteLine("Enter postal code:  ");
-        user.ContactAddress.PostalCode = Console.ReadLine()!;
+        user.PostalCode = Console.ReadLine()!;
 
         Console.WriteLine("Enter city:  ");
-        user.ContactAddress.City = Console.ReadLine()!;
+        user.City = Console.ReadLine()!;
 
         _contactServices.AddContactToList(user);
 
@@ -79,9 +79,9 @@ public class ContactMenu
             Console.WriteLine($"{user.FirstName} {user.LastName} ");
             Console.WriteLine($"{user.ContactInformation.Email} ");
             Console.WriteLine($"{user.ContactInformation.PhoneNumber} ");
-            Console.WriteLine($"{user.ContactAddress.StreetName} ");
-            Console.WriteLine($"{user.ContactAddress.PostalCode} ");
-            Console.WriteLine($"{user.ContactAddress.City} ");
+            Console.WriteLine($"{user.StreetName} ");
+            Console.WriteLine($"{user.PostalCode} ");
+            Console.WriteLine($"{user.City} ");
         }
     }
 }
