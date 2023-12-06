@@ -29,6 +29,9 @@ public class ContactMenu
                     break;
                 case "3":
                     goto Exit;
+                default:
+                    Console.WriteLine("Invalid option, please try again");
+                    break;
             }
 
             Console.ReadKey();
