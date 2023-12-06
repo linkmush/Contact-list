@@ -28,21 +28,19 @@ public class ContactMenu
                     ShowAllMenu();
                     break;
                 case "3":
-                    Exit:
-                    break;
+                    goto Exit;
             }
 
             Console.ReadKey();
         }
+
+        Exit: // Exit-etiketten för att avsluta loopen
+        Console.WriteLine("Exiting...");
     }
 
     private void ShowAddMenu()
     {
-        var user = new Contacts
-        {
-            ContactInformation = new ContactInformation(),
-            ContactAddress = new ContactAddress()
-        };
+        var user = new Contacts();
 
         Console.Clear();
         Console.WriteLine("Enter First Name:  ");

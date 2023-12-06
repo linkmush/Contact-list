@@ -8,13 +8,13 @@ public class ContactServices
 
     public void AddContactToList(Contacts contact)
     {
-        if (!_contacts.Any(x => x.ContactInformation.Email == contact.ContactInformation.Email))
+        if (!_contacts.Any(x => x.Email == contact.Email))
             _contacts.Add(contact);
     }
 
     public Contacts GetUserFromList(string email)
     {
-        var user = _contacts.FirstOrDefault(x => x.ContactInformation.Email == email);
+        var user = _contacts.FirstOrDefault(x => x.Email == email);
         return user ??= null!;
     }
 

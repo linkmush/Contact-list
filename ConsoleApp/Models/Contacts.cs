@@ -2,11 +2,12 @@
 {
     public class Contacts
     {
-        public Contacts()
-        {
-            ContactInformation = new ContactInformation();
-            ContactAddress = new ContactAddress();
-        }
+
+        public string FirstName { get; set; } = null!;
+        public string LastName { get; set; } = null!;
+
+        public ContactInformation ContactInformation { get; set; } = new ContactInformation(); 
+        public ContactAddress ContactAddress { get; set; } = new ContactAddress();
 
         // konstruktor skapad så contactaddress och contactinformation är tillgängliga i contacts som sedan kan initieras i andra klasser.
         public string City
@@ -18,7 +19,7 @@
         public string PostalCode
         {
             get { return ContactAddress.PostalCode; }
-            set { ContactAddress.City = value; }
+            set { ContactAddress.PostalCode = value; }
         }
 
         public string StreetName
@@ -30,19 +31,13 @@
         public string PhoneNumber
         {
             get { return ContactInformation.PhoneNumber; }
-            set { ContactAddress.StreetName = value; }
+            set { ContactInformation.PhoneNumber = value; }
         }
 
         public string Email
         {
             get { return ContactInformation.Email; }
-            set { ContactAddress.StreetName = value; }
+            set { ContactInformation.Email = value; }
         }
-
-        public string FirstName { get; set; } = null!;
-        public string LastName { get; set; } = null!;
-
-        public ContactInformation ContactInformation { get; set; }
-        public ContactAddress ContactAddress { get; set; }
     }
 }
