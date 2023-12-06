@@ -28,7 +28,8 @@ public class ContactMenu
                     ShowAllMenu();
                     break;
                 case "3":
-                    goto Exit;
+                    Environment.Exit(0);
+                    break;
                 default:
                     Console.WriteLine("Invalid option, please try again");
                     break;
@@ -37,8 +38,6 @@ public class ContactMenu
             Console.ReadKey();
         }
 
-        Exit: // Exit för att avsluta loopen
-        Console.WriteLine("Exiting..");
     }
 
     private void ShowAddMenu()
@@ -53,19 +52,19 @@ public class ContactMenu
         user.LastName = Console.ReadLine()!;
 
         Console.WriteLine("Enter Email:  ");
-        user.Email = Console.ReadLine()!;
+        user.ContactInformation.Email = Console.ReadLine()!;
 
         Console.WriteLine("Enter phone number:  ");
-        user.PhoneNumber = Console.ReadLine()!;
+        user.ContactInformation.PhoneNumber = Console.ReadLine()!;
 
         Console.WriteLine("Enter street name:  ");
-        user.StreetName = Console.ReadLine()!;
+        user.ContactAddress.StreetName = Console.ReadLine()!;
 
         Console.WriteLine("Enter postal code:  ");
-        user.PostalCode = Console.ReadLine()!;
+        user.ContactAddress.PostalCode = Console.ReadLine()!;
 
         Console.WriteLine("Enter city:  ");
-        user.City = Console.ReadLine()!;
+        user.ContactAddress.City = Console.ReadLine()!;
 
         _contactServices.AddContactToList(user);
 
@@ -81,11 +80,11 @@ public class ContactMenu
             Console.WriteLine();
             Console.WriteLine($"{count}. ");
             Console.WriteLine($"{user.FirstName} {user.LastName} ");
-            Console.WriteLine($"{user.Email} ");
-            Console.WriteLine($"{user.PhoneNumber} ");
-            Console.WriteLine($"{user.StreetName} ");
-            Console.WriteLine($"{user.PostalCode} ");
-            Console.WriteLine($"{user.City} ");
+            Console.WriteLine($"{user.ContactInformation.Email} ");
+            Console.WriteLine($"{user.ContactInformation.PhoneNumber} ");
+            Console.WriteLine($"{user.ContactAddress.StreetName} ");
+            Console.WriteLine($"{user.ContactAddress.PostalCode} ");
+            Console.WriteLine($"{user.ContactAddress.City} ");
             Console.WriteLine();
 
             count++;
