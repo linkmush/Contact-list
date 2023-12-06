@@ -77,8 +77,8 @@ public class ContactMenu
         foreach(var user in users)
         {
             Console.WriteLine($"{user.FirstName} {user.LastName} ");
-            Console.WriteLine($"{user.ContactInformation.Email} ");
-            Console.WriteLine($"{user.ContactInformation.PhoneNumber} ");
+            Console.WriteLine($"{user.Email} ");
+            Console.WriteLine($"{user.PhoneNumber} ");
             Console.WriteLine($"{user.StreetName} ");
             Console.WriteLine($"{user.PostalCode} ");
             Console.WriteLine($"{user.City} ");
