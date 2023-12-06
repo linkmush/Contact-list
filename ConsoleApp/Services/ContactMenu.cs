@@ -75,14 +75,20 @@ public class ContactMenu
     {
         var users = _contactServices.GetUsersFromList();
 
-        foreach(var user in users)
+        int count = 1;
+        foreach (var user in users)
         {
+            Console.WriteLine();
+            Console.WriteLine($"{count}. ");
             Console.WriteLine($"{user.FirstName} {user.LastName} ");
             Console.WriteLine($"{user.Email} ");
             Console.WriteLine($"{user.PhoneNumber} ");
             Console.WriteLine($"{user.StreetName} ");
             Console.WriteLine($"{user.PostalCode} ");
             Console.WriteLine($"{user.City} ");
+            Console.WriteLine();
+
+            count++;
         }
     }
 }
