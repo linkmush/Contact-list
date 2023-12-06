@@ -34,8 +34,8 @@ public class ContactMenu
             Console.ReadKey();
         }
 
-        Exit: // Exit-etiketten för att avsluta loopen
-        Console.WriteLine("Exiting...");
+        Exit: // Exit för att avsluta loopen
+        Console.WriteLine("Exiting..");
     }
 
     private void ShowAddMenu()
