@@ -1,10 +1,18 @@
-﻿using ConsoleApp.Models;
+﻿using ConsoleApp.Enums;
+using ConsoleApp.Interfaces;
+using ConsoleApp.Models;
 
 using ConsoleApp.Services;
+using System;
 
-public class ContactMenu
+public interface IContactMenu
 {
-    private readonly ContactServices _contactServices = new ContactServices();
+    void ShowMainMenu();
+}
+
+public class ContactMenu : IContactMenu
+{
+    private readonly IContactService _contactService = new ContactServices();
 
     public void ShowMainMenu()
     {
@@ -42,52 +50,84 @@ public class ContactMenu
 
     private void ShowAddMenu()
     {
-        var user = new Contacts();
+        IContacts contacts = new Contacts();
 
         Console.Clear();
         Console.WriteLine("Enter First Name:  ");
-        user.FirstName = Console.ReadLine()!;
+        contacts.FirstName = Console.ReadLine()!;
 
         Console.WriteLine("Enter Last Name:  ");
-        user.LastName = Console.ReadLine()!;
+        contacts.LastName = Console.ReadLine()!;
 
         Console.WriteLine("Enter Email:  ");
-        user.ContactInformation.Email = Console.ReadLine()!;
+        contacts.ContactInformation.Email = Console.ReadLine()!;
 
         Console.WriteLine("Enter phone number:  ");
-        user.ContactInformation.PhoneNumber = Console.ReadLine()!;
+        contacts.ContactInformation.PhoneNumber = Console.ReadLine()!;
 
         Console.WriteLine("Enter street name:  ");
-        user.ContactAddress.StreetName = Console.ReadLine()!;
+        contacts.ContactAddress.StreetName = Console.ReadLine()!;
 
         Console.WriteLine("Enter postal code:  ");
-        user.ContactAddress.PostalCode = Console.ReadLine()!;
+        contacts.ContactAddress.PostalCode = Console.ReadLine()!;
 
         Console.WriteLine("Enter city:  ");
-        user.ContactAddress.City = Console.ReadLine()!;
+        contacts.ContactAddress.City = Console.ReadLine()!;
 
-        _contactServices.AddContactToList(user);
+        var res = _contactService.AddContactToList(contacts);
+
+        switch (res.Status)
+        {
+            case ServiceStatus.SUCCESSED:
+                Console.WriteLine("The contact was added successfully");
+                break;
+
+            case ServiceStatus.ALREADY_EXIST:
+                Console.WriteLine("The contact already exist");
+                break;
+
+            case ServiceStatus.FAILED:
+                Console.WriteLine("Error when trying to add contact");
+                Console.WriteLine("See error message :: " + res.Result.ToString());
+                break;
+        }
 
     }
 
     private void ShowAllMenu()
     {
-        var users = _contactServices.GetUsersFromList();
+        var result = _contactService.GetContactsFromList();
 
-        int count = 1;
-        foreach (var user in users)
+        if (result.Status == ServiceStatus.SUCCESSED)
         {
-            Console.WriteLine();
-            Console.WriteLine($"{count}. ");
-            Console.WriteLine($"{user.FirstName} {user.LastName} ");
-            Console.WriteLine($"{user.ContactInformation.Email} ");
-            Console.WriteLine($"{user.ContactInformation.PhoneNumber} ");
-            Console.WriteLine($"{user.ContactAddress.StreetName} ");
-            Console.WriteLine($"{user.ContactAddress.PostalCode} ");
-            Console.WriteLine($"{user.ContactAddress.City} ");
-            Console.WriteLine();
+            var users = result.Result as List<Contacts>;
 
-            count++;
+            if (users != null && users.Any())
+            {
+                int count = 1;
+                foreach (var user in users)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine($"{count}. ");
+                    Console.WriteLine($"{user.FirstName} {user.LastName} ");
+                    Console.WriteLine($"{user.ContactInformation.Email} ");
+                    Console.WriteLine($"{user.ContactInformation.PhoneNumber} ");
+                    Console.WriteLine($"{user.ContactAddress.StreetName} ");
+                    Console.WriteLine($"{user.ContactAddress.PostalCode} ");
+                    Console.WriteLine($"{user.ContactAddress.City} ");
+                    Console.WriteLine();
+
+                    count++;
+                }
+            }
+            else
+            {
+                Console.WriteLine("No contacts found.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Failed to retrieve contacts.");
         }
     }
 }
