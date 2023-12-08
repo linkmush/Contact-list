@@ -1,6 +1,7 @@
 ﻿using ConsoleApp.Interfaces;
 using ConsoleApp.Models;
 using ConsoleApp.Models.Responses;
+using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace ConsoleApp.Services;
@@ -8,6 +9,8 @@ namespace ConsoleApp.Services;
 public class ContactServices : IContactService
 {
     private static readonly List<IContacts> _contacts = [];
+    private readonly FileService _fileService = new FileService(@"C:\Projects\Contact-list\content.json");
+    private List<Contacts> _contactsList = [];
 
     IServiceResult IContactService.AddContactToList(IContacts contacts)
     {
@@ -18,6 +21,7 @@ public class ContactServices : IContactService
             if (!_contacts.Any(x => x.ContactInformation.Email == contacts.ContactInformation.Email))
             {
                 _contacts.Add(contacts);
+                _fileService.SaveContentToFile(JsonConvert.SerializeObject(_contacts));
                 response.Status = Enums.ServiceStatus.SUCCESSED;
             }
             else
@@ -77,8 +81,17 @@ public class ContactServices : IContactService
 
         try
         {
-            response.Status = Enums.ServiceStatus.SUCCESSED;
-            response.Result = _contacts.Cast<Contacts>().ToList();
+            var content = _fileService.GetContentFromFile();
+            if (!string.IsNullOrEmpty(content))
+            {
+                var newContacts = JsonConvert.DeserializeObject<List<Contacts>>(content);
+                if (newContacts != null && newContacts.Any())
+                {
+                    _contactsList.AddRange(newContacts);
+                    response.Status = Enums.ServiceStatus.SUCCESSED;
+                    response.Result = _contactsList;
+                }
+            }
         }
         catch (Exception ex)
         {
