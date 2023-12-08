@@ -8,9 +8,8 @@ namespace ConsoleApp.Services;
 
 public class ContactServices : IContactService
 {
-    private static readonly List<IContacts> _contacts = [];
+    private List<Contacts> _contacts = [];
     private readonly FileService _fileService = new FileService(@"C:\Projects\Contact-list\content.json");
-    private List<Contacts> _contactsList = [];
 
     IServiceResult IContactService.AddContactToList(IContacts contacts)
     {
@@ -20,7 +19,7 @@ public class ContactServices : IContactService
         {
             if (!_contacts.Any(x => x.ContactInformation.Email == contacts.ContactInformation.Email))
             {
-                _contacts.Add(contacts);
+                _contacts.Add((Contacts)contacts);
                 _fileService.SaveContentToFile(JsonConvert.SerializeObject(_contacts));
                 response.Status = Enums.ServiceStatus.SUCCESSED;
             }
@@ -29,8 +28,8 @@ public class ContactServices : IContactService
                 response.Status = Enums.ServiceStatus.ALREADY_EXIST;
             }
         }
-        catch (Exception ex) 
-        { 
+        catch (Exception ex)
+        {
             Debug.WriteLine(ex.Message);
             response.Status = Enums.ServiceStatus.FAILED;
             response.Result = ex.Message;
@@ -87,9 +86,10 @@ public class ContactServices : IContactService
                 var newContacts = JsonConvert.DeserializeObject<List<Contacts>>(content);
                 if (newContacts != null && newContacts.Any())
                 {
-                    _contactsList.AddRange(newContacts);
+                    _contacts.Clear();
+                    _contacts.AddRange(newContacts);
                     response.Status = Enums.ServiceStatus.SUCCESSED;
-                    response.Result = _contactsList;
+                    response.Result = _contacts;
                 }
             }
         }
@@ -120,4 +120,4 @@ public class ContactServices : IContactService
 
         return response;
     }
-}   
+}
