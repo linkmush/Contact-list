@@ -100,7 +100,7 @@ public class ContactMenu : IContactMenu
 
         if (result.Status == ServiceStatus.SUCCESSED)
         {
-            var users = result.Result as List<Contacts>;
+            var users = result.Result as List<IContacts>;
 
             if (users != null && users.Any())
             {
