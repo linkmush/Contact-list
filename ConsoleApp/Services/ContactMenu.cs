@@ -1,14 +1,8 @@
 ﻿using ConsoleApp.Enums;
 using ConsoleApp.Interfaces;
 using ConsoleApp.Models;
-
 using ConsoleApp.Services;
-using System;
 
-public interface IContactMenu
-{
-    void ShowMainMenu();
-}
 
 public class ContactMenu : IContactMenu
 {
