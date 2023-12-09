@@ -1,6 +1,8 @@
-﻿namespace ConsoleApp.Models;
+﻿using ConsoleApp.Interfaces;
 
-public class ContactAddress
+namespace ConsoleApp.Models;
+
+public class ContactAddress : IContactAddress
 {
     public string StreetName { get; set; } = null!;
     public string PostalCode { get; set; } = null!;

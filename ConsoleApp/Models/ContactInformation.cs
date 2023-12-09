@@ -1,6 +1,8 @@
-﻿namespace ConsoleApp.Models;
+﻿using ConsoleApp.Interfaces;
 
-public class ContactInformation
+namespace ConsoleApp.Models;
+
+public class ContactInformation : IContactInformation
 {
     public string PhoneNumber { get; set; } = null!;
     public string Email { get; set; } = null!;
