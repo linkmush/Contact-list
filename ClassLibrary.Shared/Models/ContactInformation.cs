@@ -1,6 +1,6 @@
-﻿using ConsoleApp.Interfaces;
+﻿using ClassLibrary.Shared.Interfaces;
 
-namespace ConsoleApp.Models;
+namespace ClassLibrary.Shared.Models;
 
 public class ContactInformation : IContactInformation
 {

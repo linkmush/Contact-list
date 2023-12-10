@@ -1,4 +1,4 @@
-﻿namespace ConsoleApp.Interface
+﻿namespace ClassLibrary.Shared.Interface
 {
     public interface IFileService
     {

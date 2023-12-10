@@ -1,6 +1,4 @@
-﻿using ConsoleApp.Models;
-
-namespace ConsoleApp.Interfaces;
+﻿namespace ClassLibrary.Shared.Interfaces;
 
 public interface IContacts
 {

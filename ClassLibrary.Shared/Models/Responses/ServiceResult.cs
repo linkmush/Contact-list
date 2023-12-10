@@ -1,7 +1,7 @@
-﻿using ConsoleApp.Enums;
-using ConsoleApp.Interfaces;
+﻿using ClassLibrary.Shared.Enums;
+using ClassLibrary.Shared.Interfaces;
 
-namespace ConsoleApp.Models.Responses;
+namespace ClassLibrary.Shared.Models.Responses;
 
 public class ServiceResult : IServiceResult
 {

@@ -1,6 +1,6 @@
-﻿using ConsoleApp.Enums;
+﻿using ClassLibrary.Shared.Enums;
 
-namespace ConsoleApp.Interfaces;
+namespace ClassLibrary.Shared.Interfaces;
 
 public interface IServiceResult
 {

@@ -1,3 +1,5 @@
-﻿var contactMenu  = new ContactMenu();
+﻿using ConsoleApp.Services;
+
+var contactMenu  = new ContactMenu();
 
 contactMenu.ShowMainMenu();

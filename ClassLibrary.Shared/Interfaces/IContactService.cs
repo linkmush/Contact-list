@@ -1,7 +1,4 @@
-﻿using ConsoleApp.Models;
-using ConsoleApp.Models.Responses;
-
-namespace ConsoleApp.Interfaces;
+﻿namespace ClassLibrary.Shared.Interfaces;
 
 // CRUD - Create Read Update Delete
 

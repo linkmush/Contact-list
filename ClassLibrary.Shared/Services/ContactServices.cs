@@ -1,10 +1,10 @@
-﻿using ConsoleApp.Interfaces;
-using ConsoleApp.Models;
-using ConsoleApp.Models.Responses;
+﻿using ClassLibrary.Shared.Enums;
+using ClassLibrary.Shared.Interfaces;
+using ClassLibrary.Shared.Models.Responses;
 using Newtonsoft.Json;
 using System.Diagnostics;
 
-namespace ConsoleApp.Services;
+namespace ClassLibrary.Shared.Services;
 
 public class ContactServices : IContactService
 {
@@ -21,17 +21,17 @@ public class ContactServices : IContactService
             {
                 _contacts.Add(contacts);
                 _fileService.SaveContentToFile(JsonConvert.SerializeObject(_contacts, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects }));
-                response.Status = Enums.ServiceStatus.SUCCESSED;
+                response.Status = ServiceStatus.SUCCESSED;
             }
             else
             {
-                response.Status = Enums.ServiceStatus.ALREADY_EXIST;
+                response.Status = ServiceStatus.ALREADY_EXIST;
             }
         }
         catch (Exception ex)
         {
             Debug.WriteLine(ex.Message);
-            response.Status = Enums.ServiceStatus.FAILED;
+            response.Status = ServiceStatus.FAILED;
             response.Result = ex.Message;
         }
 
@@ -49,7 +49,7 @@ public class ContactServices : IContactService
         catch (Exception ex)
         {
             Debug.WriteLine(ex.Message);
-            response.Status = Enums.ServiceStatus.FAILED;
+            response.Status = ServiceStatus.FAILED;
             response.Result = ex.Message;
         }
 
@@ -71,12 +71,12 @@ public class ContactServices : IContactService
 
                 if (contact != null)
                 {
-                    response.Status = Enums.ServiceStatus.SUCCESSED;
+                    response.Status = ServiceStatus.SUCCESSED;
                     response.Result = contact;
                 }
                 else
                 {
-                    response.Status = Enums.ServiceStatus.NOT_FOUND;
+                    response.Status = ServiceStatus.NOT_FOUND;
                     response.Result = "Contact not found.";
                 }
             }
@@ -85,7 +85,7 @@ public class ContactServices : IContactService
         catch (Exception ex)
         {
             Debug.WriteLine(ex.Message);
-            response.Status = Enums.ServiceStatus.FAILED;
+            response.Status = ServiceStatus.FAILED;
             response.Result = ex.Message;
         }
 
@@ -102,14 +102,14 @@ public class ContactServices : IContactService
             if (!string.IsNullOrEmpty(content))
             {
                 _contacts = JsonConvert.DeserializeObject<List<IContacts>>(content, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects })!;
-                response.Status = Enums.ServiceStatus.SUCCESSED;
+                response.Status = ServiceStatus.SUCCESSED;
                 response.Result = _contacts;
             }
         }
         catch (Exception ex)
         {
             Debug.WriteLine(ex.Message);
-            response.Status = Enums.ServiceStatus.FAILED;
+            response.Status = ServiceStatus.FAILED;
             response.Result = ex.Message;
         }
 
@@ -127,10 +127,15 @@ public class ContactServices : IContactService
         catch (Exception ex)
         {
             Debug.WriteLine(ex.Message);
-            response.Status = Enums.ServiceStatus.FAILED;
+            response.Status = ServiceStatus.FAILED;
             response.Result = ex.Message;
         }
 
         return response;
+    }
+
+    public IServiceResult AddContactToList(IContacts contacts)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -1,7 +1,7 @@
-﻿using ConsoleApp.Interface;
+﻿using ClassLibrary.Shared.Interface;
 using System.Diagnostics;
 
-namespace ConsoleApp.Services;
+namespace ClassLibrary.Shared.Services;
 
 public class FileService(string filepath) : IFileService
 {
