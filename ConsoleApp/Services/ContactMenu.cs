@@ -2,6 +2,7 @@
 using ConsoleApp.Interfaces;
 using ConsoleApp.Models;
 using ConsoleApp.Services;
+using System;
 
 
 public class ContactMenu : IContactMenu
@@ -17,7 +18,8 @@ public class ContactMenu : IContactMenu
             Console.WriteLine();
             Console.WriteLine("1. Add a user");
             Console.WriteLine("2. Show all contacts");
-            Console.WriteLine("3. Exit");
+            Console.WriteLine("3. Show specific contact");
+            Console.WriteLine("4. Exit");
 
             var option = Console.ReadLine();
 
@@ -30,6 +32,9 @@ public class ContactMenu : IContactMenu
                     ShowAllMenu();
                     break;
                 case "3":
+                    ShowObjectMenu();
+                    break;
+                case "4":
                     Environment.Exit(0);
                     break;
                 default:
@@ -124,4 +129,38 @@ public class ContactMenu : IContactMenu
             Console.WriteLine("Failed to retrieve contacts.");
         }
     }
+
+    private void ShowObjectMenu()
+    {
+        Console.WriteLine("Type the email address of the contact you want to retrieve: ");
+
+        var email = Console.ReadLine();
+
+        if (!string.IsNullOrEmpty(email))
+        {
+            var result = _contactService.GetContactFromList(email);
+
+            if (result.Status == ServiceStatus.SUCCESSED && result.Result is IContacts contact)
+            {
+                Console.WriteLine();
+                Console.WriteLine($"{contact.FirstName} {contact.LastName} ");
+                Console.WriteLine($"{contact.ContactInformation.Email} ");
+                Console.WriteLine($"{contact.ContactInformation.PhoneNumber} ");
+                Console.WriteLine($"{contact.ContactAddress.StreetName} ");
+                Console.WriteLine($"{contact.ContactAddress.PostalCode} ");
+                Console.WriteLine($"{contact.ContactAddress.City} ");
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine("No contact found.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid email address.");
+        }
+    }
 }
+
+

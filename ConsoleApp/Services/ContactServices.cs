@@ -56,12 +56,30 @@ public class ContactServices : IContactService
         return response;
     }
 
-    IServiceResult IContactService.GetContactFromList()
+    IServiceResult IContactService.GetContactFromList(string email)
     {
         IServiceResult response = new ServiceResult();
 
         try
         {
+            var content = _fileService.GetContentFromFile();
+            if (!string.IsNullOrEmpty(content))
+            {
+                _contacts = JsonConvert.DeserializeObject<List<IContacts>>(content, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects })!;
+
+                var contact = _contacts.FirstOrDefault(x => x.ContactInformation.Email == email);
+
+                if (contact != null)
+                {
+                    response.Status = Enums.ServiceStatus.SUCCESSED;
+                    response.Result = contact;
+                }
+                else
+                {
+                    response.Status = Enums.ServiceStatus.NOT_FOUND;
+                    response.Result = "Contact not found.";
+                }
+            }
 
         }
         catch (Exception ex)
