@@ -11,6 +11,15 @@ public class ContactServices : IContactService
     private List<IContacts> _contacts = [];
     private readonly FileService _fileService = new FileService(@"C:\Projects\Contact-list\content.json");
 
+    //private readonly List<IContacts> _contacts;
+    //private readonly IFileService _fileService;
+
+    //public ContactServices(IFileService fileService)   <--- constructor injection
+    //{
+    //_contacts = new List<IContacts>();
+    //_fileService = fileService;
+    //}
+
     IServiceResult IContactService.AddContactToList(IContacts contacts)
     {
         IServiceResult response = new ServiceResult();
@@ -27,24 +36,6 @@ public class ContactServices : IContactService
             {
                 response.Status = ServiceStatus.ALREADY_EXIST;
             }
-        }
-        catch (Exception ex)
-        {
-            Debug.WriteLine(ex.Message);
-            response.Status = ServiceStatus.FAILED;
-            response.Result = ex.Message;
-        }
-
-        return response;
-    }
-
-    IServiceResult IContactService.DeleteContactFromList()
-    {
-        IServiceResult response = new ServiceResult();
-
-        try
-        {
-
         }
         catch (Exception ex)
         {
@@ -134,8 +125,41 @@ public class ContactServices : IContactService
         return response;
     }
 
-    public IServiceResult AddContactToList(IContacts contacts)
+    IServiceResult IContactService.DeleteContactFromList(string email)
     {
-        throw new NotImplementedException();
+        IServiceResult response = new ServiceResult();
+
+        try
+        {
+            var content = _fileService.GetContentFromFile(); // Hämta innehållet från filen
+            if (!string.IsNullOrEmpty(content))
+            {
+                _contacts = JsonConvert.DeserializeObject<List<IContacts>>(content, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects })!;
+
+                var contactToDelete = _contacts.FirstOrDefault(x => x.ContactInformation.Email == email);
+
+                if (contactToDelete != null)
+                {
+                    _contacts.Remove(contactToDelete); // Ta bort kontakten från listan
+                    _fileService.UpdateContactListToFile(_contacts);
+
+                    response.Status = ServiceStatus.SUCCESSED;
+                    response.Result = "Contact successfully deleted.";
+                }
+                else
+                {
+                    response.Status = ServiceStatus.NOT_FOUND;
+                    response.Result = "Contact not found.";
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+            response.Status = ServiceStatus.FAILED;
+            response.Result = ex.Message;
+        }
+
+        return response;
     }
 }

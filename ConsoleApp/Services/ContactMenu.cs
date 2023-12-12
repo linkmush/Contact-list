@@ -19,7 +19,8 @@ namespace ConsoleApp.Services
                 Console.WriteLine("1. Add a user");
                 Console.WriteLine("2. Show all contacts");
                 Console.WriteLine("3. Show specific contact");
-                Console.WriteLine("4. Exit");
+                Console.WriteLine("4. Delete contact");
+                Console.WriteLine("5. Exit");
 
                 var option = Console.ReadLine();
 
@@ -35,6 +36,9 @@ namespace ConsoleApp.Services
                         ShowObjectMenu();
                         break;
                     case "4":
+                        ShowDeletedMenu();
+                        break;
+                    case "5":
                         Environment.Exit(0);
                         break;
                     default:
@@ -154,6 +158,42 @@ namespace ConsoleApp.Services
                 else
                 {
                     Console.WriteLine("No contact found.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid email address.");
+            }
+        }
+
+        private void ShowDeletedMenu()
+        {
+            Console.WriteLine("Type the email address of the contact you want to delete: ");
+
+            var email = Console.ReadLine();
+
+            if (!string.IsNullOrEmpty(email))
+            {
+                var result = _contactService.DeleteContactFromList(email);
+
+                switch (result.Status)
+                {
+                    case ServiceStatus.SUCCESSED:
+                        Console.WriteLine(result.Result); // Print success message
+                        break;
+
+                    case ServiceStatus.NOT_FOUND:
+                        Console.WriteLine("Contact not found.");
+                        break;
+
+                    case ServiceStatus.FAILED:
+                        Console.WriteLine("Error deleting contact:");
+                        Console.WriteLine(result.Result); // Print error message
+                        break;
+
+                    default:
+                        Console.WriteLine("Unexpected error occurred.");
+                        break;
                 }
             }
             else
