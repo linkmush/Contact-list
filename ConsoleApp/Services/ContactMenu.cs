@@ -7,7 +7,12 @@ namespace ConsoleApp.Services
 {
     public class ContactMenu : IContactMenu
     {
-        private readonly IContactService _contactService = new ContactServices();
+        private readonly IContactService _contactService;
+
+        public ContactMenu(IContactService contactService)
+        {
+            _contactService = contactService;
+        }
 
         public void ShowMainMenu()
         {

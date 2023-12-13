@@ -1,1 +1,1 @@
-[]
+[{"$type":"ClassLibrary.Shared.Models.Contacts, ClassLibrary.Shared","FirstName":"oskar","LastName":"oskarsson","ContactInformation":{"$type":"ClassLibrary.Shared.Models.ContactInformation, ClassLibrary.Shared","PhoneNumber":"123123123","Email":"oskar@domain.com"},"ContactAddress":{"$type":"ClassLibrary.Shared.Models.ContactAddress, ClassLibrary.Shared","StreetName":"asdasdas","PostalCode":"123123","City":"asdasdasd"}}]

@@ -1,4 +1,5 @@
 ﻿using ClassLibrary.Shared.Enums;
+using ClassLibrary.Shared.Interface;
 using ClassLibrary.Shared.Interfaces;
 using ClassLibrary.Shared.Models.Responses;
 using Newtonsoft.Json;
@@ -8,19 +9,17 @@ namespace ClassLibrary.Shared.Services;
 
 public class ContactServices : IContactService
 {
-    private List<IContacts> _contacts = [];
-    private readonly FileService _fileService = new FileService(@"C:\Projects\Contact-list\content.json");
 
-    //private readonly List<IContacts> _contacts;
-    //private readonly IFileService _fileService;
+    private List<IContacts> _contacts;
+    private readonly IFileService _fileService;
 
-    //public ContactServices(IFileService fileService)   <--- constructor injection
-    //{
-    //_contacts = new List<IContacts>();
-    //_fileService = fileService;
-    //}
+    public ContactServices(IFileService fileService)
+    {
+        _contacts = new List<IContacts>();
+        _fileService = fileService;
+    }
 
-    IServiceResult IContactService.AddContactToList(IContacts contacts)
+IServiceResult IContactService.AddContactToList(IContacts contacts)
     {
         IServiceResult response = new ServiceResult();
 
