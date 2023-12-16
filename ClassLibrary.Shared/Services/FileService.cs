@@ -1,5 +1,4 @@
-﻿using ClassLibrary.Shared.Interface;
-using ClassLibrary.Shared.Interfaces;
+﻿using ClassLibrary.Shared.Interfaces;
 using Newtonsoft.Json;
 using System.Diagnostics;
 

@@ -1,4 +1,5 @@
-﻿using ClassLibrary.Shared.Services;
+﻿using ClassLibrary.Shared.Interfaces;
+using ClassLibrary.Shared.Services;
 using ContactMaui.ViewModels;
 using Microsoft.Extensions.Logging;
 
@@ -20,8 +21,8 @@ namespace ContactMaui
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<MainViewModel>();
 
-            builder.Services.AddSingleton<ContactServices>();
-            builder.Services.AddSingleton<FileService>();
+            builder.Services.AddSingleton<IContactService, ContactServices>();
+            builder.Services.AddSingleton<IFileService, FileService>();
 
 #if DEBUG
             builder.Logging.AddDebug();

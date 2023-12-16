@@ -1,5 +1,4 @@
 ﻿using ClassLibrary.Shared.Enums;
-using ClassLibrary.Shared.Interface;
 using ClassLibrary.Shared.Interfaces;
 using ClassLibrary.Shared.Models.Responses;
 using Newtonsoft.Json;

@@ -1,33 +1,30 @@
-﻿using ClassLibrary.Shared.Interfaces;
+﻿namespace ClassLibrary.Shared.Interfaces;
 
-namespace ClassLibrary.Shared.Interface
+public interface IFileService
 {
-    public interface IFileService
-    {
 
-        /// <summary>
-        /// Get content as string from a filepath.
-        /// </summary>
-        /// <param name="filepath">Enter the filepath with extension (eg. C:\Projects\Contact-list\content.json)</param>
-        /// <returns>Returns file content as string if file exists, or returns null.</returns>
-        string GetContentFromFile();
+    /// <summary>
+    /// Get content as string from a filepath.
+    /// </summary>
+    /// <param name="filepath">Enter the filepath with extension (eg. C:\Projects\Contact-list\content.json)</param>
+    /// <returns>Returns file content as string if file exists, or returns null.</returns>
+    string GetContentFromFile();
 
-        /// <summary>
-        /// Save contact to a filepath.
-        /// </summary>
-        /// <param name="filepath">Enter the filepath with extension (eg. C:\Projects\Contact-list\content.json)</param>
-        /// <param name="contact">Enter the contact as a string.</param>
-        /// <returns>Returns success if true, if failed return failed.</returns>
-        bool SaveContentToFile(string content);
+    /// <summary>
+    /// Save contact to a filepath.
+    /// </summary>
+    /// <param name="filepath">Enter the filepath with extension (eg. C:\Projects\Contact-list\content.json)</param>
+    /// <param name="contact">Enter the contact as a string.</param>
+    /// <returns>Returns success if true, if failed return failed.</returns>
+    bool SaveContentToFile(string content);
 
 
-        /// <summary>
-        /// Remove contact from file and then updates the json file/list. 
-        /// </summary>
-        /// <param name="filepath">Enter the filepath with extension (eg. C:\Projects\Contact-list\content.json)</param>
-        /// <param name="contact">Enter the contact as a string.</param>
-        /// <returns>Returns success if contact was deleted, if failed return failed.</returns>
-        bool UpdateContactListToFile(List<IContacts> contacts);
+    /// <summary>
+    /// Remove contact from file and then updates the json file/list. 
+    /// </summary>
+    /// <param name="filepath">Enter the filepath with extension (eg. C:\Projects\Contact-list\content.json)</param>
+    /// <param name="contact">Enter the contact as a string.</param>
+    /// <returns>Returns success if contact was deleted, if failed return failed.</returns>
+    bool UpdateContactListToFile(List<IContacts> contacts);
 
-    }
 }
