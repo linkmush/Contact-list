@@ -1,7 +1,6 @@
 ﻿using ClassLibrary.Shared.Enums;
 using ClassLibrary.Shared.Models;
 using ClassLibrary.Shared.Interfaces;
-using ClassLibrary.Shared.Services;
 
 namespace ConsoleApp.Services
 {
@@ -21,7 +20,7 @@ namespace ConsoleApp.Services
                 Console.Clear();
                 Console.WriteLine("MENU");
                 Console.WriteLine();
-                Console.WriteLine("1. Add a user");
+                Console.WriteLine("1. Add new contact");
                 Console.WriteLine("2. Show all contacts");
                 Console.WriteLine("3. Show specific contact");
                 Console.WriteLine("4. Delete contact");

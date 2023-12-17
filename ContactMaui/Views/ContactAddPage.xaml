@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ContactMaui.Views.ContactAddPage"
+             Title="ContactAddPage">
+    <VerticalStackLayout>
+        <Label 
+            Text="Add new contact"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Entry Placeholder="First Name" Text="{Binding FirstName, Mode=TwoWay}" />
+        <Entry Placeholder="Last Name" Text="{Binding LastName, Mode=TwoWay}" />
+        <Entry Placeholder="Phone Number" Text="{Binding ContactInformation.PhoneNumber, Mode=TwoWay}" />
+        <Entry Placeholder="Email" Text="{Binding ContactInformation.Email, Mode=TwoWay}" />
+        <Entry Placeholder="Street Name" Text="{Binding ContactAddress.StreetName, Mode=TwoWay}" />
+        <Entry Placeholder="Postal Code" Text="{Binding ContactAddress.PostalCode, Mode=TwoWay}" />
+        <Entry Placeholder="City" Text="{Binding ContactAddress.City, Mode=TwoWay}" />
+
+        <!-- Här kan du lägga till en knapp för att "submit" -->
+        <Button Text="Submit" Command="{Binding SubmitCommand}" />
+    </VerticalStackLayout>
+</ContentPage>

@@ -26,6 +26,7 @@ public interface IContactService
     /// </summary>
     /// <returns>Return contacts if list has contacts in it, if no contacts exists return null.</returns>
     IServiceResult GetContactFromList(string email);
+
     IServiceResult UpdateContactInList();
 
 }

@@ -9,7 +9,9 @@
              x:Class="ContactMaui.MainPage">
 
     <ScrollView>
-        
+        <StackLayout>
+            <Button Text="Add new contact" Command="{Binding NavigateToContactAdd}" />
+        </StackLayout>
     </ScrollView>
 
 </ContentPage>

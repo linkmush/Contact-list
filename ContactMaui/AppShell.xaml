@@ -3,10 +3,18 @@
     x:Class="ContactMaui.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    
     xmlns:local="clr-namespace:ContactMaui"
+    xmlns:views="clr-namespace:ContactMaui.Views"
+    
     Shell.FlyoutBehavior="Disabled"
     Title="ContactMaui">
 
     <ShellContent Title="Home" ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" />
+    <ShellContent Title="Add Contact" Route="ContactAddPage" ContentTemplate="{DataTemplate views:ContactAddPage}" />
+    <ShellContent Title="Contact List" Route="ContactListPage" ContentTemplate="{DataTemplate views:ContactListPage}" />
+    <ShellContent Title="Contact Details" Route="ContactInfoPage" ContentTemplate="{DataTemplate views:ContactInfoPage}" />
+    <ShellContent Title="Remove Contact" Route="ContactDeletePage" ContentTemplate="{DataTemplate views:ContactDeletePage}" />
+    <ShellContent Title="Update Contact" Route="ContactUpdatePage" ContentTemplate="{DataTemplate views:ContactUpdatePage}" />
 
 </Shell>
