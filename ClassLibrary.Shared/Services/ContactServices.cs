@@ -18,7 +18,9 @@ public class ContactServices : IContactService
         _fileService = fileService;
     }
 
-IServiceResult IContactService.AddContactToList(IContacts contacts)
+    public event EventHandler? ContactsUpdated;
+
+    IServiceResult IContactService.AddContactToList(IContacts contacts)
     {
         IServiceResult response = new ServiceResult();
 
@@ -27,6 +29,7 @@ IServiceResult IContactService.AddContactToList(IContacts contacts)
             if (!_contacts.Any(x => x.ContactInformation.Email == contacts.ContactInformation.Email))
             {
                 _contacts.Add(contacts);
+                ContactsUpdated?.Invoke(this, EventArgs.Empty);
                 _fileService.SaveContentToFile(JsonConvert.SerializeObject(_contacts, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects }));
                 response.Status = ServiceStatus.SUCCESSED;
             }
@@ -105,12 +108,34 @@ IServiceResult IContactService.AddContactToList(IContacts contacts)
         return response;
     }
 
-    IServiceResult IContactService.UpdateContactInList()
+    IServiceResult IContactService.UpdateContactInList(IContacts contactUpdated)
     {
         IServiceResult response = new ServiceResult();
 
         try
         {
+
+            var existingContact = _contacts.FirstOrDefault(x => x.ContactInformation.Email == contactUpdated.ContactInformation.Email);
+
+            if (existingContact != null)
+            {
+                existingContact.FirstName = contactUpdated.FirstName;
+                existingContact.LastName = contactUpdated.LastName;
+                existingContact.ContactInformation = contactUpdated.ContactInformation;
+                existingContact.ContactAddress = contactUpdated.ContactAddress;
+
+                ContactsUpdated?.Invoke(this, EventArgs.Empty);
+
+                _fileService.UpdateContactListToFile(_contacts);
+
+                response.Status = ServiceStatus.SUCCESSED;
+                response.Result = "Contact successfully updated.";
+            }
+            else
+            {
+                response.Status = ServiceStatus.NOT_FOUND;
+                response.Result = "Contact not found.";
+            }
 
         }
         catch (Exception ex)
@@ -140,6 +165,8 @@ IServiceResult IContactService.AddContactToList(IContacts contacts)
                 {
                     _contacts.Remove(contactToDelete); // Ta bort kontakten från listan
                     _fileService.UpdateContactListToFile(_contacts);
+
+                    ContactsUpdated?.Invoke(this, EventArgs.Empty);
 
                     response.Status = ServiceStatus.SUCCESSED;
                     response.Result = "Contact successfully deleted.";

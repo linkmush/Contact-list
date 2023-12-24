@@ -19,20 +19,27 @@ namespace ContactMaui
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            builder.Services.AddSingleton<MainPage>();
-            builder.Services.AddSingleton<ContactAddPage>();
+            builder.Services.AddSingleton<ContactListViewModel>();
             builder.Services.AddSingleton<ContactListPage>();
+
+            builder.Services.AddSingleton<ContactAddViewModel>();
+            builder.Services.AddSingleton<ContactAddPage>();
+
+            builder.Services.AddSingleton<ContactInfoViewModel>();
             builder.Services.AddSingleton<ContactInfoPage>();
+
+            builder.Services.AddSingleton<ContactDeleteViewModel>();
             builder.Services.AddSingleton<ContactDeletePage>();
+
+            builder.Services.AddSingleton<ContactUpdateViewModel>();
             builder.Services.AddSingleton<ContactUpdatePage>();
-            builder.Services.AddSingleton<MainViewModel>();
 
             builder.Services.AddSingleton<IContactService, ContactServices>();
-            builder.Services.AddSingleton<IFileService, FileService>();
+            builder.Services.AddSingleton<IFileService>(new FileService(@"C:\Projects\Contact-list\content.json"));
 
-#if DEBUG
+
             builder.Logging.AddDebug();
-#endif
+
 
             return builder.Build();
         }

@@ -1,38 +1,28 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using ClassLibrary.Shared.Interfaces;
-using System.Collections.ObjectModel;
-using Contact = ClassLibrary.Shared.Models.Contacts;
-using ClassLibrary.Shared.Enums;
+using Interfaces = ClassLibrary.Shared.Interfaces;
+using Models = ClassLibrary.Shared.Models;
+using CommunityToolkit.Mvvm.Input;
 
 namespace ContactMaui.ViewModels
 {
     public partial class ContactAddViewModel : ObservableObject
     {
-        private readonly IContactService _contactServices;
+        private readonly Interfaces.IContactService _contactServices;
 
-        public ContactAddViewModel(IContactService contactServices)
+        public ContactAddViewModel(Interfaces.IContactService contactServices)
         {
             _contactServices = contactServices;
         }
 
         [ObservableProperty]
-        private Contact _addContactForm = new();
+        private Interfaces.IContacts _addContactForm = new Models.Contacts();
 
-        [ObservableProperty]
-        private ObservableCollection<Contact> _contactList = [];
-
-        public void AddContact(Contact newContact)
+        [RelayCommand]
+        private async Task AddContactToList() 
         {
-            var result = _contactServices.AddContactToList(newContact);
-
-            if (result.Status == ServiceStatus.SUCCESSED)
-            {
-                ContactList.Add(newContact); // Uppdatera den lokala listan med den nya kontakten
-            }
-            else if (result.Status == ServiceStatus.ALREADY_EXIST) 
-            {
-                 // Visa meddelande till användaren att kontakten redan finns
-            }
+            _contactServices.AddContactToList(AddContactForm);
+            AddContactForm = new Models.Contacts();
+            await Shell.Current.GoToAsync("..");  // Kan skriva sidan du ska gå till i "mainpage" TYP. Kan skriva //ochdensidaduskatill
         }
     }
 }

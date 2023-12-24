@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             
+             xmlns:viewmodels="clr-namespace:ContactMaui.ViewModels"
+             x:DataType="{x:Type viewmodels:ContactAddViewModel}"
+             
              x:Class="ContactMaui.Views.ContactAddPage"
              Title="ContactAddPage">
-    <VerticalStackLayout>
+    <VerticalStackLayout Margin="20">
         <Label 
             Text="Add new contact"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
-        <Entry Placeholder="First Name" Text="{Binding FirstName, Mode=TwoWay}" />
-        <Entry Placeholder="Last Name" Text="{Binding LastName, Mode=TwoWay}" />
-        <Entry Placeholder="Phone Number" Text="{Binding ContactInformation.PhoneNumber, Mode=TwoWay}" />
-        <Entry Placeholder="Email" Text="{Binding ContactInformation.Email, Mode=TwoWay}" />
-        <Entry Placeholder="Street Name" Text="{Binding ContactAddress.StreetName, Mode=TwoWay}" />
-        <Entry Placeholder="Postal Code" Text="{Binding ContactAddress.PostalCode, Mode=TwoWay}" />
-        <Entry Placeholder="City" Text="{Binding ContactAddress.City, Mode=TwoWay}" />
+        <Entry Placeholder="First Name" Text="{Binding AddContactForm.FirstName}" />
+        <Entry Placeholder="Last Name" Text="{Binding AddContactForm.LastName}" />
+        <Entry Placeholder="Phone Number" Text="{Binding AddContactForm.ContactInformation.PhoneNumber}" />
+        <Entry Placeholder="Email" Text="{Binding AddContactForm.ContactInformation.Email}" />
+        <Entry Placeholder="Street Name" Text="{Binding AddContactForm.ContactAddress.StreetName}" />
+        <Entry Placeholder="Postal Code" Text="{Binding AddContactForm.ContactAddress.PostalCode}" />
+        <Entry Placeholder="City" Text="{Binding AddContactForm.ContactAddress.City}" />
 
         <!-- Här kan du lägga till en knapp för att "submit" -->
-        <Button Text="Submit" Command="{Binding SubmitCommand}" />
+        <Button Text="Submit" Command="{Binding  AddContactToListCommand}" Margin="0,10,0,0" />
     </VerticalStackLayout>
 </ContentPage>

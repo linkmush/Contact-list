@@ -4,16 +4,9 @@ using System.Diagnostics;
 
 namespace ClassLibrary.Shared.Services;
 
-public class FileService(string filepath) : IFileService  // remove (string filepath) for Constructor Injection
+public class FileService(string filepath) : IFileService
 {
-    private readonly string _filepath = filepath;   // remove this for Constructor Injection
-
-    // private readonly string _filepath;  
-
-    // public FileService(string filepath)    <--- this is the Constructor Injection
-    // {
-    //   _filepath = filepath;
-    // }
+    private readonly string _filepath = filepath;
 
     public bool SaveContentToFile(string content)
     {

@@ -10,11 +10,9 @@
     Shell.FlyoutBehavior="Disabled"
     Title="ContactMaui">
 
-    <ShellContent Title="Home" ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" />
-    <ShellContent Title="Add Contact" Route="ContactAddPage" ContentTemplate="{DataTemplate views:ContactAddPage}" />
     <ShellContent Title="Contact List" Route="ContactListPage" ContentTemplate="{DataTemplate views:ContactListPage}" />
-    <ShellContent Title="Contact Details" Route="ContactInfoPage" ContentTemplate="{DataTemplate views:ContactInfoPage}" />
-    <ShellContent Title="Remove Contact" Route="ContactDeletePage" ContentTemplate="{DataTemplate views:ContactDeletePage}" />
+    <ShellContent Title="Add Contact" Route="ContactAddPage" ContentTemplate="{DataTemplate views:ContactAddPage}" />
+    <ShellContent Title="Contact Info" Route="ContactInfoPage" ContentTemplate="{DataTemplate views:ContactInfoPage}" />
     <ShellContent Title="Update Contact" Route="ContactUpdatePage" ContentTemplate="{DataTemplate views:ContactUpdatePage}" />
 
 </Shell>
