@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              
              xmlns:viewmodels="clr-namespace:ContactMaui.ViewModels"
+             xmlns:models="clr-namespace:ClassLibrary.Shared.Models;assembly=ClassLibrary.Shared"
+             
              x:DataType="{x:Type viewmodels:ContactListViewModel}"
              
              x:Class="ContactMaui.Views.ContactListPage"
@@ -13,14 +15,14 @@
         
         <CollectionView Grid.Row="1" ItemsSource="{Binding ContactList}">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:Contacts">
                     <Frame BackgroundColor="Transparent" BorderColor="Transparent" Padding="10" Margin="0">
-                        <Grid ColumnDefinitions="*, auto">
+                        <Grid ColumnDefinitions="*, *, auto">
 
                             <Label Grid.Column="0" Text="{Binding FirstName}" VerticalOptions="Center" VerticalTextAlignment="Center" />
                             <Label Grid.Column="1" Text="{Binding LastName}" VerticalOptions="Center" VerticalTextAlignment="Center" />
 
-                            <HorizontalStackLayout Grid.Column="1">
+                            <HorizontalStackLayout Grid.Column="2">
                                 <Button Text="Details" CommandParameter="{Binding .}" Command="{Binding Path=NavigateToContactInfoCommand, Source={RelativeSource AncestorType={x:Type viewmodels:ContactListViewModel}}}" Margin="0,0,0,20" />
                                 <Button Text="Edit" CommandParameter="{Binding .}" Command="{Binding Path=NavigateToContactUpdateCommand, Source={RelativeSource AncestorType={x:Type viewmodels:ContactListViewModel}}}" Margin="0,0,0,20" />
                                 <Button Text="Delete" CommandParameter="{Binding .}" Command="{Binding Path=DeleteContactFromListCommand, Source={RelativeSource AncestorType={x:Type viewmodels:ContactListViewModel}}}" Margin="0,0,0,20" />

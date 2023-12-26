@@ -11,7 +11,6 @@ namespace ContactMaui
             Routing.RegisterRoute(nameof(ContactAddPage), typeof(ContactAddPage));
             Routing.RegisterRoute(nameof(ContactListPage), typeof(ContactListPage));
             Routing.RegisterRoute(nameof(ContactInfoPage), typeof(ContactInfoPage));
-            Routing.RegisterRoute(nameof(ContactDeletePage), typeof(ContactDeletePage));
             Routing.RegisterRoute(nameof(ContactUpdatePage), typeof(ContactUpdatePage));
         }
     }

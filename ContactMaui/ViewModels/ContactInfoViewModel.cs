@@ -15,7 +15,7 @@ public partial class ContactInfoViewModel : ObservableObject
     }
 
     [ObservableProperty]
-    private Interfaces.IContacts _contactInfo = new Models.Contacts();
+    private Interfaces.IContacts? _contactInfo = new Models.Contacts();
 
     [RelayCommand]
     private void GetContactFromList(string email)

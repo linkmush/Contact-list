@@ -28,9 +28,6 @@ namespace ContactMaui
             builder.Services.AddSingleton<ContactInfoViewModel>();
             builder.Services.AddSingleton<ContactInfoPage>();
 
-            builder.Services.AddSingleton<ContactDeleteViewModel>();
-            builder.Services.AddSingleton<ContactDeletePage>();
-
             builder.Services.AddSingleton<ContactUpdateViewModel>();
             builder.Services.AddSingleton<ContactUpdatePage>();
 
