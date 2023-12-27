@@ -2,6 +2,7 @@
 using Interfaces = ClassLibrary.Shared.Interfaces;
 using Models = ClassLibrary.Shared.Models;
 using CommunityToolkit.Mvvm.Input;
+using ClassLibrary.Shared.Enums;
 
 namespace ContactMaui.ViewModels
 {
@@ -18,7 +19,7 @@ namespace ContactMaui.ViewModels
         private Interfaces.IContacts _addContactForm = new Models.Contacts();
 
         [RelayCommand]
-        private async Task AddContactToList() 
+        private async Task AddContactToList()
         {
             _contactServices.AddContactToList(AddContactForm);
             AddContactForm = new Models.Contacts();

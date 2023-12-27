@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using ClassLibrary.Shared.Models.Responses;
 
 namespace ContactMaui.ViewModels;
 
@@ -22,7 +23,18 @@ public partial class ContactListViewModel : ObservableObject
 
     private void UpdateContactList()
     {
-        ContactList = new ObservableCollection<Interfaces.IContacts>((IEnumerable<Interfaces.IContacts>)_contactService.GetContactsFromList());
+        var contactsResult = (ServiceResult)_contactService.GetContactsFromList();
+
+        if (contactsResult.Result is List<Interfaces.IContacts> contactsList)
+        {
+            ContactList = new ObservableCollection<Interfaces.IContacts>(contactsList);
+        }
+        else
+        {
+            ContactList = [];
+        }
+
+        //ContactList = new ObservableCollection<Interfaces.IContacts>((IEnumerable<Interfaces.IContacts>)_contactService.GetContactsFromList());
     }
 
     [ObservableProperty]
@@ -55,6 +67,5 @@ public partial class ContactListViewModel : ObservableObject
     private void DeleteContactFromList(Interfaces.IContacts contact)
     {
         _contactService.DeleteContactFromList(contact.ContactInformation.Email);
-        ContactList = new ObservableCollection<Interfaces.IContacts>((IEnumerable<Interfaces.IContacts>)_contactService.GetContactsFromList());
     }
 }

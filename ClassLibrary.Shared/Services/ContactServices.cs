@@ -29,9 +29,9 @@ public class ContactServices : IContactService
             if (!_contacts.Any(x => x.ContactInformation.Email == contacts.ContactInformation.Email))
             {
                 _contacts.Add(contacts);
-                ContactsUpdated?.Invoke(this, EventArgs.Empty);
                 _fileService.SaveContentToFile(JsonConvert.SerializeObject(_contacts, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects }));
                 response.Status = ServiceStatus.SUCCESSED;
+                ContactsUpdated?.Invoke(this, EventArgs.Empty);
             }
             else
             {
@@ -124,8 +124,6 @@ public class ContactServices : IContactService
                 existingContact.ContactInformation = contactUpdated.ContactInformation;
                 existingContact.ContactAddress = contactUpdated.ContactAddress;
 
-                ContactsUpdated?.Invoke(this, EventArgs.Empty);
-
                 _fileService.UpdateContactListToFile(_contacts);
 
                 response.Status = ServiceStatus.SUCCESSED;
@@ -145,6 +143,7 @@ public class ContactServices : IContactService
             response.Result = ex.Message;
         }
 
+        ContactsUpdated?.Invoke(this, EventArgs.Empty);
         return response;
     }
 
@@ -166,8 +165,6 @@ public class ContactServices : IContactService
                     _contacts.Remove(contactToDelete); // Ta bort kontakten från listan
                     _fileService.UpdateContactListToFile(_contacts);
 
-                    ContactsUpdated?.Invoke(this, EventArgs.Empty);
-
                     response.Status = ServiceStatus.SUCCESSED;
                     response.Result = "Contact successfully deleted.";
                 }
@@ -185,6 +182,7 @@ public class ContactServices : IContactService
             response.Result = ex.Message;
         }
 
+        ContactsUpdated?.Invoke(this, EventArgs.Empty);
         return response;
     }
 }

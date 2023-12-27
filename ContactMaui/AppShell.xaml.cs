@@ -8,8 +8,8 @@ namespace ContactMaui
         {
             InitializeComponent();
 
-            Routing.RegisterRoute(nameof(ContactAddPage), typeof(ContactAddPage));
             Routing.RegisterRoute(nameof(ContactListPage), typeof(ContactListPage));
+            Routing.RegisterRoute(nameof(ContactAddPage), typeof(ContactAddPage));
             Routing.RegisterRoute(nameof(ContactInfoPage), typeof(ContactInfoPage));
             Routing.RegisterRoute(nameof(ContactUpdatePage), typeof(ContactUpdatePage));
         }
