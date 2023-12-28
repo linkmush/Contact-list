@@ -5,7 +5,7 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace ContactMaui.ViewModels;
 
-public partial class ContactInfoViewModel : ObservableObject
+public partial class ContactInfoViewModel : ObservableObject, IQueryAttributable
 {
     private readonly Interfaces.IContactService _contactService;
 
@@ -21,5 +21,10 @@ public partial class ContactInfoViewModel : ObservableObject
     private void GetContactFromList(string email)
     {
         _contactService.GetContactFromList(email);
+    }
+
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        ContactInfo = (query["ContactInfo"] as Interfaces.IContacts);
     }
 }

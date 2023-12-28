@@ -2,7 +2,6 @@
 using Interfaces = ClassLibrary.Shared.Interfaces;
 using Models = ClassLibrary.Shared.Models;
 using CommunityToolkit.Mvvm.Input;
-using ClassLibrary.Shared.Enums;
 
 namespace ContactMaui.ViewModels
 {
@@ -23,7 +22,7 @@ namespace ContactMaui.ViewModels
         {
             _contactServices.AddContactToList(AddContactForm);
             AddContactForm = new Models.Contacts();
-            await Shell.Current.GoToAsync("..");  // Kan skriva sidan du ska gå till i "mainpage" TYP. Kan skriva //ochdensidaduskatill
+            await Shell.Current.GoToAsync("..");
         }
     }
 }

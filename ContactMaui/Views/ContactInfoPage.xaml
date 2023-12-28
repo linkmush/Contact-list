@@ -9,7 +9,7 @@
              Title="ContactInfoPage">
     
     <VerticalStackLayout Margin="20">
-        <Label Text="Contact" VerticalOptions="Center" VerticalTextAlignment="Center" />
+        <Label Text="Contact:" VerticalOptions="Center" VerticalTextAlignment="Center" />
 
         <Label Text="{Binding ContactInfo.FirstName}"/>
         <Label Text="{Binding ContactInfo.LastName}"/>
@@ -19,6 +19,5 @@
         <Label Text="{Binding ContactInfo.ContactAddress.PostalCode}"/>
         <Label Text="{Binding ContactInfo.ContactAddress.City}"/>
 
-        <!--<Button Text="Go back to contactlist" Command="{Binding NavigatetoContactListCommand}" Margin="0,10,0,0" />-->
     </VerticalStackLayout>
 </ContentPage>

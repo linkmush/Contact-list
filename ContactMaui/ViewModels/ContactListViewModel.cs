@@ -33,8 +33,6 @@ public partial class ContactListViewModel : ObservableObject
         {
             ContactList = [];
         }
-
-        //ContactList = new ObservableCollection<Interfaces.IContacts>((IEnumerable<Interfaces.IContacts>)_contactService.GetContactsFromList());
     }
 
     [ObservableProperty]
@@ -49,7 +47,12 @@ public partial class ContactListViewModel : ObservableObject
     [RelayCommand]
     private async Task NavigateToContactInfo(Interfaces.IContacts contacts)
     {
-        await Shell.Current.GoToAsync("ContactInfoPage");
+        var parameters = new ShellNavigationQueryParameters
+        {
+            { "ContactInfo", contacts }
+        };
+
+        await Shell.Current.GoToAsync("ContactInfoPage", parameters);
     }
 
     [RelayCommand]

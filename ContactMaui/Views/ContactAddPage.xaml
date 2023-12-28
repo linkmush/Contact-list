@@ -22,7 +22,6 @@
         <Entry Placeholder="Postal Code" Text="{Binding AddContactForm.ContactAddress.PostalCode}" />
         <Entry Placeholder="City" Text="{Binding AddContactForm.ContactAddress.City}" />
 
-        <!-- Här kan du lägga till en knapp för att "submit" -->
         <Button Text="Add Contact" Command="{Binding  AddContactToListCommand}" Margin="0,10,0,0" />
     </VerticalStackLayout>
 </ContentPage>
