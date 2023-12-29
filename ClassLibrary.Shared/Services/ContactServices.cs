@@ -3,6 +3,7 @@ using ClassLibrary.Shared.Interfaces;
 using ClassLibrary.Shared.Models.Responses;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Xml;
 
 namespace ClassLibrary.Shared.Services;
 
@@ -153,7 +154,7 @@ public class ContactServices : IContactService
 
         try
         {
-            var content = _fileService.GetContentFromFile(); // Hämta innehållet från filen
+            var content = _fileService.GetContentFromFile();
             if (!string.IsNullOrEmpty(content))
             {
                 _contacts = JsonConvert.DeserializeObject<List<IContacts>>(content, new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Objects })!;
@@ -162,7 +163,7 @@ public class ContactServices : IContactService
 
                 if (contactToDelete != null)
                 {
-                    _contacts.Remove(contactToDelete); // Ta bort kontakten från listan
+                    _contacts.Remove(contactToDelete);
                     _fileService.UpdateContactListToFile(_contacts);
 
                     response.Status = ServiceStatus.SUCCESSED;

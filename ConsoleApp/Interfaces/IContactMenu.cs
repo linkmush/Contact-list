@@ -1,4 +1,7 @@
-﻿public interface IContactMenu
+﻿namespace ConsoleApp.Interfaces
 {
-    void ShowMainMenu();
+    public interface IContactMenu
+    {
+        void ShowMainMenu();
+    }
 }

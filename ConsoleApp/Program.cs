@@ -1,5 +1,6 @@
 ﻿using ClassLibrary.Shared.Interfaces;
 using ClassLibrary.Shared.Services;
+using ConsoleApp.Interfaces;
 using ConsoleApp.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

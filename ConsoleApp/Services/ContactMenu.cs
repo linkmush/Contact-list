@@ -1,6 +1,7 @@
 ﻿using ClassLibrary.Shared.Enums;
 using ClassLibrary.Shared.Models;
 using ClassLibrary.Shared.Interfaces;
+using ConsoleApp.Interfaces;
 
 namespace ConsoleApp.Services
 {
@@ -183,7 +184,7 @@ namespace ConsoleApp.Services
                 switch (result.Status)
                 {
                     case ServiceStatus.SUCCESSED:
-                        Console.WriteLine(result.Result); // Print success message
+                        Console.WriteLine(result.Result);
                         break;
 
                     case ServiceStatus.NOT_FOUND:
@@ -192,7 +193,7 @@ namespace ConsoleApp.Services
 
                     case ServiceStatus.FAILED:
                         Console.WriteLine("Error deleting contact:");
-                        Console.WriteLine(result.Result); // Print error message
+                        Console.WriteLine(result.Result);
                         break;
 
                     default:
