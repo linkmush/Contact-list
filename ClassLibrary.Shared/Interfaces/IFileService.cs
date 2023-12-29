@@ -2,7 +2,6 @@
 
 public interface IFileService
 {
-
     /// <summary>
     /// Get content as string from a filepath.
     /// </summary>
@@ -18,7 +17,6 @@ public interface IFileService
     /// <returns>Returns success if true, if failed return failed.</returns>
     bool SaveContentToFile(string content);
 
-
     /// <summary>
     /// Remove contact from file and then updates the json file/list. 
     /// </summary>
@@ -26,5 +24,4 @@ public interface IFileService
     /// <param name="contact">Enter the contact as a string.</param>
     /// <returns>Returns success if contact was deleted, if failed return failed.</returns>
     bool UpdateContactListToFile(List<IContacts> contacts);
-
 }
