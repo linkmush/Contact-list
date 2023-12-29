@@ -13,15 +13,15 @@ public interface IFileService
     /// Save contact to a filepath.
     /// </summary>
     /// <param name="filepath">Enter the filepath with extension (eg. C:\Projects\Contact-list\content.json)</param>
-    /// <param name="contact">Enter the contact as a string.</param>
+    /// <param name="content">Enter the contact as a string.</param>
     /// <returns>Returns success if true, if failed return failed.</returns>
     bool SaveContentToFile(string content);
 
     /// <summary>
-    /// Remove contact from file and then updates the json file/list. 
+    /// Remove contact from file and then updates the json file/list.
     /// </summary>
     /// <param name="filepath">Enter the filepath with extension (eg. C:\Projects\Contact-list\content.json)</param>
-    /// <param name="contact">Enter the contact as a string.</param>
+    /// <param name="contacts">Enter the contact as a string.</param>
     /// <returns>Returns success if contact was deleted, if failed return failed.</returns>
     bool UpdateContactListToFile(List<IContacts> contacts);
 }
